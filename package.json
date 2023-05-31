@@ -1,12 +1,12 @@
 {
-  "name": "revolt-api",
+  "name": "frenzy-api",
   "version": "0.5.19",
-  "description": "Revolt API Library",
+  "description": "Frenzy API Library",
   "main": "dist/index.js",
   "module": "esm/index.js",
-  "homepage": "https://developers.revolt.chat",
-  "repository": "https://github.com/revoltchat/api.git",
-  "author": "Paul Makles <insrt.uk>",
+  "homepage": "https://trasnfem.pp.ua",
+  "repository": "https://github.com/frenzycoms/api.git",
+  "author": "Ripley White",
   "license": "MIT",
   "scripts": {
     "build": "REWRITE_ANYOF=1 oapilib && tsc && tsc -p tsconfig.esm.json",
