@@ -1,28 +1,24 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Revolt API",
-    "description": "Open source user-first chat platform.",
-    "termsOfService": "https://revolt.chat/terms",
+    "title": "Frenzy API",
+    "description": "Community-centric pricacy focused chat platform.",
+    "termsOfService": "https://transfem.pp.ua/terms",
     "contact": {
-      "name": "Revolt Support",
-      "url": "https://revolt.chat",
-      "email": "contact@revolt.chat"
+      "name": "Frenzy Support",
+      "url": "https://transfem.pp.ua",
+      "email": "ripley@astolfo.pp.ua"
     },
     "license": {
       "name": "AGPLv3",
-      "url": "https://github.com/revoltchat/delta/blob/master/LICENSE"
+      "url": "https://github.com/frenzycoms/delta/blob/master/LICENSE"
     },
     "version": "0.5.19"
   },
   "servers": [
     {
-      "url": "https://api.revolt.chat",
-      "description": "Revolt API"
-    },
-    {
-      "url": "http://local.revolt.chat:8000",
-      "description": "Local Revolt Environment"
+      "url": "https://api.transfem.pp.ua",
+      "description": "Frenzy API"
     }
   ],
   "paths": {
