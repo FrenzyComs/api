@@ -88,19 +88,17 @@ export interface paths {
     /** Invite a bot to a server or group by its id.` */
     post: operations["invite_invite_bot"];
   };
-  "/bots/{bot}": {
+  "/bots/{target}": {
     /** Fetch details of a bot you own by its id. */
     get: operations["fetch_fetch_bot"];
-  };
-  "/bots/@me": {
-    /** Fetch all of the bots that you have control over. */
-    get: operations["fetch_owned_fetch_owned_bots"];
-  };
-  "/bots/{target}": {
     /** Delete a bot by its id. */
     delete: operations["delete_delete_bot"];
     /** Edit bot details by its id. */
     patch: operations["edit_edit_bot"];
+  };
+  "/bots/@me": {
+    /** Fetch all of the bots that you have control over. */
+    get: operations["fetch_owned_fetch_owned_bots"];
   };
   "/channels/{target}/ack/{message}": {
     /** Lets the server and all other clients know that we've seen this message id in this channel. */
@@ -562,236 +560,6 @@ export interface components {
           /** @enum {string} */
           type: "LabelMe";
         }
-      | ((
-          | {
-              /** @enum {string} */
-              type: "LabelMe";
-            }
-          | {
-              /** @enum {string} */
-              type: "AlreadyOnboarded";
-            }
-          | {
-              /** @enum {string} */
-              type: "UsernameTaken";
-            }
-          | {
-              /** @enum {string} */
-              type: "InvalidUsername";
-            }
-          | {
-              /** @enum {string} */
-              type: "UnknownUser";
-            }
-          | {
-              /** @enum {string} */
-              type: "AlreadyFriends";
-            }
-          | {
-              /** @enum {string} */
-              type: "AlreadySentRequest";
-            }
-          | {
-              /** @enum {string} */
-              type: "Blocked";
-            }
-          | {
-              /** @enum {string} */
-              type: "BlockedByOther";
-            }
-          | {
-              /** @enum {string} */
-              type: "NotFriends";
-            }
-          | {
-              /** @enum {string} */
-              type: "UnknownChannel";
-            }
-          | {
-              /** @enum {string} */
-              type: "UnknownAttachment";
-            }
-          | {
-              /** @enum {string} */
-              type: "UnknownMessage";
-            }
-          | {
-              /** @enum {string} */
-              type: "CannotEditMessage";
-            }
-          | {
-              /** @enum {string} */
-              type: "CannotJoinCall";
-            }
-          | {
-              /** @enum {string} */
-              type: "TooManyAttachments";
-              /** Format: uint */
-              max: number;
-            }
-          | {
-              /** @enum {string} */
-              type: "TooManyReplies";
-              /** Format: uint */
-              max: number;
-            }
-          | {
-              /** @enum {string} */
-              type: "TooManyChannels";
-              /** Format: uint */
-              max: number;
-            }
-          | {
-              /** @enum {string} */
-              type: "EmptyMessage";
-            }
-          | {
-              /** @enum {string} */
-              type: "PayloadTooLarge";
-            }
-          | {
-              /** @enum {string} */
-              type: "CannotRemoveYourself";
-            }
-          | {
-              /** @enum {string} */
-              type: "GroupTooLarge";
-              /** Format: uint */
-              max: number;
-            }
-          | {
-              /** @enum {string} */
-              type: "AlreadyInGroup";
-            }
-          | {
-              /** @enum {string} */
-              type: "NotInGroup";
-            }
-          | {
-              /** @enum {string} */
-              type: "UnknownServer";
-            }
-          | {
-              /** @enum {string} */
-              type: "InvalidRole";
-            }
-          | {
-              /** @enum {string} */
-              type: "Banned";
-            }
-          | {
-              /** @enum {string} */
-              type: "TooManyServers";
-              /** Format: uint */
-              max: number;
-            }
-          | {
-              /** @enum {string} */
-              type: "TooManyEmoji";
-              /** Format: uint */
-              max: number;
-            }
-          | {
-              /** @enum {string} */
-              type: "TooManyRoles";
-              /** Format: uint */
-              max: number;
-            }
-          | {
-              /** @enum {string} */
-              type: "ReachedMaximumBots";
-            }
-          | {
-              /** @enum {string} */
-              type: "IsBot";
-            }
-          | {
-              /** @enum {string} */
-              type: "BotIsPrivate";
-            }
-          | {
-              /** @enum {string} */
-              type: "CannotReportYourself";
-            }
-          | {
-              /** @enum {string} */
-              type: "MissingPermission";
-              permission: string;
-            }
-          | {
-              /** @enum {string} */
-              type: "MissingUserPermission";
-              permission: string;
-            }
-          | {
-              /** @enum {string} */
-              type: "NotElevated";
-            }
-          | {
-              /** @enum {string} */
-              type: "NotPrivileged";
-            }
-          | {
-              /** @enum {string} */
-              type: "CannotGiveMissingPermissions";
-            }
-          | {
-              /** @enum {string} */
-              type: "NotOwner";
-            }
-          | {
-              /** @enum {string} */
-              type: "DatabaseError";
-              operation: string;
-              collection: string;
-            }
-          | {
-              /** @enum {string} */
-              type: "InternalError";
-            }
-          | {
-              /** @enum {string} */
-              type: "InvalidOperation";
-            }
-          | {
-              /** @enum {string} */
-              type: "InvalidCredentials";
-            }
-          | {
-              /** @enum {string} */
-              type: "InvalidProperty";
-            }
-          | {
-              /** @enum {string} */
-              type: "InvalidSession";
-            }
-          | {
-              /** @enum {string} */
-              type: "DuplicateNonce";
-            }
-          | {
-              /** @enum {string} */
-              type: "NotFound";
-            }
-          | {
-              /** @enum {string} */
-              type: "NoEffect";
-            }
-          | {
-              /** @enum {string} */
-              type: "FailedValidation";
-              error: string;
-            }
-          | {
-              /** @enum {string} */
-              type: "VosoUnavailable";
-            }
-        ) & {
-          /** @enum {string} */
-          type: "Core";
-          /** @description Where this error occurred */
-          location: string;
-        })
       | {
           /** @enum {string} */
           type: "AlreadyOnboarded";
@@ -1828,19 +1596,19 @@ export interface components {
           /** @description Group Id */
           group: string;
         };
-    /** @description Public Bot */
+    /** Public Bot */
     PublicBot: {
       /** @description Bot Id */
       _id: string;
       /** @description Bot Username */
       username: string;
       /** @description Profile Avatar */
-      avatar: string;
+      avatar?: components["schemas"]["File"] | null;
       /** @description Profile Description */
-      description: string;
+      description?: string | null;
     };
-    /** @description Bot Response */
-    FetchBotResponse: {
+    /** Bot Response */
+    BotResponse: {
       /** @description Bot object */
       bot: components["schemas"]["Bot"];
       /** @description User object */
@@ -3404,29 +3172,13 @@ export interface operations {
   fetch_fetch_bot: {
     parameters: {
       path: {
-        bot: components["schemas"]["Id"];
+        target: components["schemas"]["Id"];
       };
     };
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["FetchBotResponse"];
-        };
-      };
-      /** An error occurred. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["Error"];
-        };
-      };
-    };
-  };
-  /** Fetch all of the bots that you have control over. */
-  fetch_owned_fetch_owned_bots: {
-    responses: {
-      200: {
-        content: {
-          "application/json": components["schemas"]["OwnedBotsResponse"];
+          "application/json": components["schemas"]["BotResponse"];
         };
       };
       /** An error occurred. */
@@ -3478,6 +3230,22 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["DataEditBot"];
+      };
+    };
+  };
+  /** Fetch all of the bots that you have control over. */
+  fetch_owned_fetch_owned_bots: {
+    responses: {
+      200: {
+        content: {
+          "application/json": components["schemas"]["OwnedBotsResponse"];
+        };
+      };
+      /** An error occurred. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
       };
     };
   };
