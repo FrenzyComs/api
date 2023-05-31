@@ -4,7 +4,7 @@
   "description": "Frenzy API Library",
   "main": "dist/index.js",
   "module": "esm/index.js",
-  "homepage": "https://trasnfem.pp.ua",
+  "homepage": "https://transfem.pp.ua",
   "repository": "https://github.com/frenzycoms/api.git",
   "author": "Ripley White",
   "license": "MIT",

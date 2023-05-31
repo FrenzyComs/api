@@ -1,21 +1,21 @@
-# Revolt API
+# Frenzy API
 
-![revolt-api](https://img.shields.io/npm/v/revolt-api)
+![frenzy-api](https://img.shields.io/npm/v/revolt-api)
 
-This package contains typings for objects in the [Revolt API](https://developers.revolt.chat/api/) and a fully typed API request builder.
+This package contains typings for objects in the [Frenzy API](https://github.com/frenzycoms/backend) and a fully typed API request builder.
 
 ### Example Usage
 
 If you just need access to types:
 
 ```typescript
-import type { User } from 'revolt-api';
+import type { User } from 'frenzy-api';
 ```
 
 If you want to send requests:
 
 ```typescript
-import { API } from 'revolt-api';
+import { API } from 'frenzy-api';
 
 // Initialise a new API client:
 const client = new API();
