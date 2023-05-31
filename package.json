@@ -1,6 +1,6 @@
 {
   "name": "frenzy-api",
-  "version": "0.5.19",
+  "version": "0.5.20",
   "description": "Frenzy API Library",
   "main": "dist/index.js",
   "module": "esm/index.js",

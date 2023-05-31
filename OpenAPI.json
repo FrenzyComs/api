@@ -1,24 +1,28 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Frenzy API",
-    "description": "Community-centric pricacy focused chat platform.",
-    "termsOfService": "https://transfem.pp.ua/terms",
+    "title": "Revolt API",
+    "description": "Open source user-first chat platform.",
+    "termsOfService": "https://revolt.chat/terms",
     "contact": {
-      "name": "Frenzy Support",
-      "url": "https://transfem.pp.ua",
-      "email": "ripley@astolfo.pp.ua"
+      "name": "Revolt Support",
+      "url": "https://revolt.chat",
+      "email": "contact@revolt.chat"
     },
     "license": {
       "name": "AGPLv3",
-      "url": "https://github.com/frenzycoms/delta/blob/master/LICENSE"
+      "url": "https://github.com/revoltchat/delta/blob/master/LICENSE"
     },
     "version": "0.5.19"
   },
   "servers": [
     {
-      "url": "https://api.transfem.pp.ua",
-      "description": "Frenzy API"
+      "url": "https://api.revolt.chat",
+      "description": "Revolt API"
+    },
+    {
+      "url": "http://local.revolt.chat:8000",
+      "description": "Local Revolt Environment"
     }
   ],
   "paths": {
@@ -951,7 +955,7 @@
         ]
       }
     },
-    "/bots/{bot}": {
+    "/bots/{target}": {
       "get": {
         "tags": [
           "Bots"
@@ -961,7 +965,7 @@
         "operationId": "fetch_fetch_bot",
         "parameters": [
           {
-            "name": "bot",
+            "name": "target",
             "in": "path",
             "required": true,
             "schema": {
@@ -985,7 +989,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FetchBotResponse"
+                  "$ref": "#/components/schemas/BotResponse"
                 }
               }
             }
@@ -996,46 +1000,7 @@
             "Session Token": []
           }
         ]
-      }
-    },
-    "/bots/@me": {
-      "get": {
-        "tags": [
-          "Bots"
-        ],
-        "summary": "Fetch Owned Bots",
-        "description": "Fetch all of the bots that you have control over.",
-        "operationId": "fetch_owned_fetch_owned_bots",
-        "responses": {
-          "default": {
-            "description": "An error occurred.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OwnedBotsResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "Session Token": []
-          }
-        ]
-      }
-    },
-    "/bots/{target}": {
+      },
       "delete": {
         "tags": [
           "Bots"
@@ -1118,6 +1083,43 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Bot"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Session Token": []
+          }
+        ]
+      }
+    },
+    "/bots/@me": {
+      "get": {
+        "tags": [
+          "Bots"
+        ],
+        "summary": "Fetch Owned Bots",
+        "description": "Fetch all of the bots that you have control over.",
+        "operationId": "fetch_owned_fetch_owned_bots",
+        "responses": {
+          "default": {
+            "description": "An error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OwnedBotsResponse"
                 }
               }
             }
@@ -5490,805 +5492,6 @@
             }
           },
           {
-            "description": "Core crate error",
-            "type": "object",
-            "oneOf": [
-              {
-                "description": "This error was not labeled :(",
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "LabelMe"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "AlreadyOnboarded"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "UsernameTaken"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "InvalidUsername"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "UnknownUser"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "AlreadyFriends"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "AlreadySentRequest"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "Blocked"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "BlockedByOther"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "NotFriends"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "UnknownChannel"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "UnknownAttachment"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "UnknownMessage"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "CannotEditMessage"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "CannotJoinCall"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "max",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "TooManyAttachments"
-                    ]
-                  },
-                  "max": {
-                    "type": "integer",
-                    "format": "uint",
-                    "minimum": 0.0
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "max",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "TooManyReplies"
-                    ]
-                  },
-                  "max": {
-                    "type": "integer",
-                    "format": "uint",
-                    "minimum": 0.0
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "max",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "TooManyChannels"
-                    ]
-                  },
-                  "max": {
-                    "type": "integer",
-                    "format": "uint",
-                    "minimum": 0.0
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "EmptyMessage"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "PayloadTooLarge"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "CannotRemoveYourself"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "max",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "GroupTooLarge"
-                    ]
-                  },
-                  "max": {
-                    "type": "integer",
-                    "format": "uint",
-                    "minimum": 0.0
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "AlreadyInGroup"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "NotInGroup"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "UnknownServer"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "InvalidRole"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "Banned"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "max",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "TooManyServers"
-                    ]
-                  },
-                  "max": {
-                    "type": "integer",
-                    "format": "uint",
-                    "minimum": 0.0
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "max",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "TooManyEmoji"
-                    ]
-                  },
-                  "max": {
-                    "type": "integer",
-                    "format": "uint",
-                    "minimum": 0.0
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "max",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "TooManyRoles"
-                    ]
-                  },
-                  "max": {
-                    "type": "integer",
-                    "format": "uint",
-                    "minimum": 0.0
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "ReachedMaximumBots"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "IsBot"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "BotIsPrivate"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "CannotReportYourself"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "permission",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "MissingPermission"
-                    ]
-                  },
-                  "permission": {
-                    "type": "string"
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "permission",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "MissingUserPermission"
-                    ]
-                  },
-                  "permission": {
-                    "type": "string"
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "NotElevated"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "NotPrivileged"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "CannotGiveMissingPermissions"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "NotOwner"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "collection",
-                  "operation",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "DatabaseError"
-                    ]
-                  },
-                  "operation": {
-                    "type": "string"
-                  },
-                  "collection": {
-                    "type": "string"
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "InternalError"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "InvalidOperation"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "InvalidCredentials"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "InvalidProperty"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "InvalidSession"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "DuplicateNonce"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "NotFound"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "NoEffect"
-                    ]
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "error",
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "FailedValidation"
-                    ]
-                  },
-                  "error": {
-                    "type": "string"
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "VosoUnavailable"
-                    ]
-                  }
-                }
-              }
-            ],
-            "required": [
-              "location",
-              "type"
-            ],
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "Core"
-                ]
-              },
-              "location": {
-                "description": "Where this error occurred",
-                "type": "string"
-              }
-            }
-          },
-          {
             "type": "object",
             "required": [
               "type"
@@ -9229,12 +8432,10 @@
         ]
       },
       "PublicBot": {
-        "description": "Public Bot",
+        "title": "Public Bot",
         "type": "object",
         "required": [
           "_id",
-          "avatar",
-          "description",
           "username"
         ],
         "properties": {
@@ -9248,16 +8449,22 @@
           },
           "avatar": {
             "description": "Profile Avatar",
-            "type": "string"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/File"
+              }
+            ],
+            "nullable": true
           },
           "description": {
             "description": "Profile Description",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         }
       },
-      "FetchBotResponse": {
-        "description": "Bot Response",
+      "BotResponse": {
+        "title": "Bot Response",
         "type": "object",
         "required": [
           "bot",
